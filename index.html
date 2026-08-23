@@ -7,9 +7,9 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
         
-        /* Bar Judul Utama (BCA) - Warna Oranye */
+        /* BAR JUDUL UTAMA BCA - WARNA BIRU MUDA */
         .header-container {
-            background: linear-gradient(135deg, #e65100, #f57c00);
+            background: linear-gradient(135deg, #007bff, #339af0);
             color: white;
             text-align: center;
             padding: 20px;
@@ -18,26 +18,11 @@
             margin-bottom: 20px;
         }
         .header-container h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
-        .header-container h3 { margin: 8px 0 0 0; font-size: 18px; color: #fff; text-transform: uppercase; }
+        .header-container h3 { margin: 8px 0 0 0; font-size: 18px; color: #ffeb3b; text-transform: uppercase; }
         
-        /* Bar Judul Standar (Oranye) */
+        /* Bar Judul Standar (Oranye untuk BNI, BRI, Danamon, Maybank) */
         .section-title {
             background: linear-gradient(135deg, #e65100, #f57c00);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 35px;
-            margin-bottom: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            letter-spacing: 1px;
-        }
-
-        /* BAR JUDUL KHUSUS DEPO BRI - Warna Biru Muda */
-        .section-title-birumuda {
-            background: linear-gradient(135deg, #007bff, #339af0);
             color: white;
             text-align: center;
             padding: 12px;
@@ -53,11 +38,11 @@
         table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         
-        /* Header Tabel Standar */
-        th { background-color: #f57c00; color: white; }
+        /* Header Tabel BCA (Biru Muda) */
+        .table-bca th { background-color: #007bff; color: white; }
 
-        /* Header Tabel Khusus BRI (Biru Muda) */
-        .table-birumuda th { background-color: #007bff; color: white; }
+        /* Header Tabel Standar (Oranye) */
+        th { background-color: #f57c00; color: white; }
 
         tr:nth-child(even) { background-color: #f9f9f9; }
         tr:hover { background-color: #f1f1f1; }
@@ -75,12 +60,13 @@
 </head>
 <body>
 
+    <!-- BAR BCA MENJADI BIRU MUDA -->
     <div class="header-container">
         <h2>Daftar Rekening Bank</h2>
         <h3>BANK DEPO BCA</h3>
     </div>
 
-    <table>
+    <table class="table-bca">
         <thead>
             <tr>
                 <th>No</th>
@@ -127,9 +113,8 @@
         </tbody>
     </table>
 
-    <!-- BAR JUDUL DEPO BRI MENJADI BIRU MUDA -->
-    <div class="section-title-birumuda">DEPO BRI</div>
-    <table class="table-birumuda">
+    <div class="section-title">DEPO BRI</div>
+    <table>
         <thead>
             <tr>
                 <th>No</th>
