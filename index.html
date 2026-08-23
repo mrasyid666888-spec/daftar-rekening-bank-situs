@@ -147,6 +147,23 @@
         </tbody>
     </table>
 
+    <div class="section-title">DEPO MAYBANK</div>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Jenis Bank</th>
+                <th>Nomor Rekening</th>
+                <th>Nama Pemilik Rekening</th>
+                <th>Area / Kode</th>
+                <th>Aktif / Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>MAYBANK</td><td>8775931431</td><td>SHELLA FEBRI YANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+        </tbody>
+    </table>
+
     <script>
         function ubahStatus(selectElement) {
             if (selectElement.value === 'off') {
