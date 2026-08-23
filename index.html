@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Rekening Bank</title>
+    <title>Daftar Rekening Bank - Depo & Withdraw</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
         
+        /* PILIHAN MENU TAB NAVIGASI */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .nav-tab {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-tab:hover {
+            background-color: #d0d0d0;
+        }
+        .nav-tab.active {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        /* KONTEN HALAMAN (TAB CONTENT) */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
         /* KHUSUS BAR JUDUL UTAMA BCA (Biru Muda) */
         .header-container-bca {
             background: linear-gradient(135deg, #007bff, #339af0);
@@ -96,125 +132,175 @@
 </head>
 <body>
 
-    <!-- BAR BCA (BIRU MUDA) -->
-    <div class="header-container-bca">
-        <h2>Daftar Rekening Bank</h2>
-        <h3>BANK DEPO BCA</h3>
+    <!-- TOMBOL PILIHAN MENU (TAB NAVIGATION) -->
+    <div class="nav-container">
+        <button class="nav-tab active" onclick="switchTab('depoTab', this)">Data Rekening Depo</button>
+        <button class="nav-tab" onclick="switchTab('wdTab', this)">Data Rekening Withdraw</button>
     </div>
 
-    <table class="table-bca">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jenis Bank</th>
-                <th>Nomor Rekening</th>
-                <th>Nama Pemilik Rekening</th>
-                <th>Area / Kode</th>
-                <th>Aktif / Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>BCA</td><td>5776604336</td><td>AZRHIL RAYHAN.V</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>2</td><td>BCA</td><td>0223285161</td><td>HARRY SHAPUTRA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>3</td><td>BCA</td><td>8650828284</td><td>HENDRI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>4</td><td>BCA</td><td>1680444320</td><td>WASNO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>5</td><td>BCA</td><td>0771390969</td><td>DIAH NUR FITRIAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>6</td><td>BCA</td><td>1483339571</td><td>Awang Wartini</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>7</td><td>BCA</td><td>5311465351</td><td>Isman Nurohim</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>8</td><td>BCA</td><td>5215295041</td><td>SAPNAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>9</td><td>BCA</td><td>2480759632</td><td>MUHAMAD ALKA BAHTIAR</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>10</td><td>BCA</td><td>7642477814</td><td>HAMAD ALIFABYAN RAMADHANI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>11</td><td>BCA</td><td>5885292647</td><td>MUHAMMAD RAFFI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>12</td><td>BCA</td><td>7642480149</td><td>AHMAD FAUZAN AL GHIFARI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-        </tbody>
-    </table>
+    <!-- ================= HALAMAN 1: REKENING DEPO ================= -->
+    <div id="depoTab" class="tab-content active">
+        <!-- BAR BCA (BIRU MUDA) -->
+        <div class="header-container-bca">
+            <h2>Daftar Rekening Bank</h2>
+            <h3>BANK DEPO BCA</h3>
+        </div>
 
-    <!-- BAR BNI (ORANYE) -->
-    <div class="section-title">DEPO BNI</div>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jenis Bank</th>
-                <th>Nomor Rekening</th>
-                <th>Nama Pemilik Rekening</th>
-                <th>Area / Kode</th>
-                <th>Aktif / Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>BNI</td><td>2036188000</td><td>Muhamad Pebryansah</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>2</td><td>BNI</td><td>2034716077</td><td>DENIS SAPUTRA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>3</td><td>BNI</td><td>2084173607</td><td>MUHAMAD RIJAL</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>4</td><td>BNI</td><td>2085237131</td><td>IRA HARLINA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-        </tbody>
-    </table>
+        <table class="table-bca">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenis Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Nama Pemilik Rekening</th>
+                    <th>Area / Kode</th>
+                    <th>Aktif / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>BCA</td><td>5776604336</td><td>AZRHIL RAYHAN.V</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>2</td><td>BCA</td><td>0223285161</td><td>HARRY SHAPUTRA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>3</td><td>BCA</td><td>8650828284</td><td>HENDRI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>4</td><td>BCA</td><td>1680444320</td><td>WASNO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>5</td><td>BCA</td><td>0771390969</td><td>DIAH NUR FITRIAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>6</td><td>BCA</td><td>1483339571</td><td>Awang Wartini</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>7</td><td>BCA</td><td>5311465351</td><td>Isman Nurohim</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>8</td><td>BCA</td><td>5215295041</td><td>SAPNAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>9</td><td>BCA</td><td>2480759632</td><td>MUHAMAD ALKA BAHTIAR</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>10</td><td>BCA</td><td>7642477814</td><td>HAMAD ALIFABYAN RAMADHANI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>11</td><td>BCA</td><td>5885292647</td><td>MUHAMMAD RAFFI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>12</td><td>BCA</td><td>7642480149</td><td>AHMAD FAUZAN AL GHIFARI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            </tbody>
+        </table>
 
-    <!-- BAR DEPO BRI (BIRU TUA) -->
-    <div class="section-title-bri">DEPO BRI</div>
-    <table class="table-bri">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jenis Bank</th>
-                <th>Nomor Rekening</th>
-                <th>Nama Pemilik Rekening</th>
-                <th>Area / Kode</th>
-                <th>Aktif / Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>BRI</td><td>142101000082560</td><td>DUDUNG</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>2</td><td>BRI</td><td>731101003548508</td><td>Yayat</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>3</td><td>BRI</td><td>385401006146505</td><td>Burhanudin</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>4</td><td>BRI</td><td>037901057224505</td><td>SUMARNI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>5</td><td>BRI</td><td>063501047733502</td><td>DEVI SUDARYATI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>6</td><td>BRI</td><td>082701048659508</td><td>SAPNAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>7</td><td>BRI</td><td>112901039362503</td><td>ALDI KURNIAWAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>8</td><td>BRI</td><td>668201002226503</td><td>FAUZAN AULIA RAHMAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>9</td><td>BRI</td><td>113901018204505</td><td>RENDI RUSTANDI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>10</td><td>BRI</td><td>112901039635508</td><td>DEVI SUSANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-            <tr><td>11</td><td>BRI</td><td>11290103933506</td><td>HADI PERMADI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-        </tbody>
-    </table>
+        <!-- BAR BNI (ORANYE) -->
+        <div class="section-title">DEPO BNI</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenis Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Nama Pemilik Rekening</th>
+                    <th>Area / Kode</th>
+                    <th>Aktif / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>BNI</td><td>2036188000</td><td>Muhamad Pebryansah</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>2</td><td>BNI</td><td>2034716077</td><td>DENIS SAPUTRA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>3</td><td>BNI</td><td>2084173607</td><td>MUHAMAD RIJAL</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>4</td><td>BNI</td><td>2085237131</td><td>IRA HARLINA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            </tbody>
+        </table>
 
-    <!-- BAR DEPO DANAMON (KUNING TUA) -->
-    <div class="section-title-danamon">DEPO DANAMON</div>
-    <table class="table-danamon">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jenis Bank</th>
-                <th>Nomor Rekening</th>
-                <th>Nama Pemilik Rekening</th>
-                <th>Area / Kode</th>
-                <th>Aktif / Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>DANAMON</td><td>903693249454</td><td>Anisa Mulyana</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-        </tbody>
-    </table>
+        <!-- BAR DEPO BRI (BIRU TUA) -->
+        <div class="section-title-bri">DEPO BRI</div>
+        <table class="table-bri">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenis Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Nama Pemilik Rekening</th>
+                    <th>Area / Kode</th>
+                    <th>Aktif / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>BRI</td><td>142101000082560</td><td>DUDUNG</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>2</td><td>BRI</td><td>731101003548508</td><td>Yayat</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>3</td><td>BRI</td><td>385401006146505</td><td>Burhanudin</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>4</td><td>BRI</td><td>037901057224505</td><td>SUMARNI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>5</td><td>BRI</td><td>063501047733502</td><td>DEVI SUDARYATI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>6</td><td>BRI</td><td>082701048659508</td><td>SAPNAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>7</td><td>BRI</td><td>112901039362503</td><td>ALDI KURNIAWAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>8</td><td>BRI</td><td>668201002226503</td><td>FAUZAN AULIA RAHMAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>9</td><td>BRI</td><td>113901018204505</td><td>RENDI RUSTANDI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>10</td><td>BRI</td><td>112901039635508</td><td>DEVI SUSANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>11</td><td>BRI</td><td>11290103933506</td><td>HADI PERMADI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            </tbody>
+        </table>
 
-    <!-- BAR MAYBANK (ORANYE) -->
-    <div class="section-title">DEPO MAYBANK</div>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jenis Bank</th>
-                <th>Nomor Rekening</th>
-                <th>Nama Pemilik Rekening</th>
-                <th>Area / Kode</th>
-                <th>Aktif / Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>MAYBANK</td><td>8775931431</td><td>SHELLA FEBRI YANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
-        </tbody>
-    </table>
+        <!-- BAR DEPO DANAMON (KUNING TUA) -->
+        <div class="section-title-danamon">DEPO DANAMON</div>
+        <table class="table-danamon">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenis Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Nama Pemilik Rekening</th>
+                    <th>Area / Kode</th>
+                    <th>Aktif / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>DANAMON</td><td>903693249454</td><td>Anisa Mulyana</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            </tbody>
+        </table>
+
+        <!-- BAR MAYBANK (ORANYE) -->
+        <div class="section-title">DEPO MAYBANK</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenis Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Nama Pemilik Rekening</th>
+                    <th>Area / Kode</th>
+                    <th>Aktif / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>MAYBANK</td><td>8775931431</td><td>SHELLA FEBRI YANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= HALAMAN 2: REKENING WITHDRAW ================= -->
+    <div id="wdTab" class="tab-content">
+        <div class="header-container-bca" style="background: linear-gradient(135deg, #2b8a3e, #40c057);">
+            <h2>Daftar Rekening Bank</h2>
+            <h3>BANK WITHDRAW / WD</h3>
+        </div>
+
+        <!-- Contoh Tabel Withdraw (Bisa disesuaikan isinya) -->
+        <table>
+            <thead>
+                <tr style="background-color: #2b8a3e; color: white;">
+                    <th>No</th>
+                    <th>Jenis Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Nama Pemilik Rekening</th>
+                    <th>Area / Kode</th>
+                    <th>Aktif / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>BCA (WD)</td><td>1234567890</td><td>CONTOH PEMILIK WD</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            </tbody>
+        </table>
+    </div>
 
     <script>
+        // Fungsi untuk pindah halaman tab
+        function switchTab(tabId, buttonElement) {
+            // Sembunyikan semua konten tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Non-aktifkan semua tombol menu
+            const buttons = document.querySelectorAll('.nav-tab');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Tampilkan tab yang dipilih dan aktifkan tombolnya
+            document.getElementById(tabId).classList.add('active');
+            buttonElement.classList.add('active');
+        }
+
+        // Fungsi untuk ubah status select warna hijau/merah
         function ubahStatus(selectElement) {
             if (selectElement.value === 'off') {
                 selectElement.className = 'status-select status-off';
