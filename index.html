@@ -32,9 +32,28 @@
             letter-spacing: 1px;
         }
 
+        /* Khusus untuk DEPO BRI agar Biru Tua */
+        .section-title-bri {
+            background: linear-gradient(135deg, #003366, #0056b3);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 35px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
         table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background-color: #f57c00; color: white; }
+        
+        /* Header tabel khusus BRI warna Biru Tua */
+        .table-bri th { background-color: #0056b3; color: white; }
+
         tr:nth-child(even) { background-color: #f9f9f9; }
         tr:hover { background-color: #f1f1f1; }
         
@@ -103,8 +122,8 @@
         </tbody>
     </table>
 
-    <div class="section-title">DEPO BRI</div>
-    <table>
+    <div class="section-title-bri">DEPO BRI</div>
+    <table class="table-bri">
         <thead>
             <tr>
                 <th>No</th>
