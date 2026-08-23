@@ -22,7 +22,17 @@
         th { background-color: #0056b3; color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         tr:hover { background-color: #f1f1f1; }
-        .badge-aktif { background-color: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        
+        /* Styling untuk status interaktif */
+        .status-select {
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .status-aktif { background-color: #d4edda; color: #155724; }
+        .status-off { background-color: #f8d7da; color: #721c24; }
     </style>
 </head>
 <body>
@@ -40,24 +50,34 @@
                 <th>Nomor Rekening</th>
                 <th>Nama Pemilik Rekening</th>
                 <th>Area / Kode</th>
-                <th>Aktif</th>
+                <th>Aktif / Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td>1</td><td>BCA</td><td>5776604336</td><td>AZRHIL RAYHAN.V</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>2</td><td>BCA</td><td>0223285161</td><td>HARRY SHAPUTRA</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>3</td><td>BCA</td><td>8650828284</td><td>HENDRI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>4</td><td>BCA</td><td>1680444320</td><td>WASNO</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>5</td><td>BCA</td><td>0771390969</td><td>DIAH NUR FITRIAN</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>6</td><td>BCA</td><td>1483339571</td><td>Awang Wartini</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>7</td><td>BCA</td><td>5311465351</td><td>Isman Nurohim</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>8</td><td>BCA</td><td>5215295041</td><td>SAPNAH</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>9</td><td>BCA</td><td>2480759632</td><td>MUHAMAD ALKA BAHTIAR</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>10</td><td>BCA</td><td>7642477814</td><td>HAMAD ALIFABYAN RAMADHANI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>11</td><td>BCA</td><td>5885292647</td><td>MUHAMMAD RAFFI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>12</td><td>BCA</td><td>7642480149</td><td>AHMAD FAUZAN AL GHIFARI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
+            <tr><td>1</td><td>BCA</td><td>5776604336</td><td>AZRHIL RAYHAN.V</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>2</td><td>BCA</td><td>0223285161</td><td>HARRY SHAPUTRA</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>3</td><td>BCA</td><td>8650828284</td><td>HENDRI</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>4</td><td>BCA</td><td>1680444320</td><td>WASNO</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>5</td><td>BCA</td><td>0771390969</td><td>DIAH NUR FITRIAN</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>6</td><td>BCA</td><td>1483339571</td><td>Awang Wartini</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>7</td><td>BCA</td><td>5311465351</td><td>Isman Nurohim</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>8</td><td>BCA</td><td>5215295041</td><td>SAPNAH</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>9</td><td>BCA</td><td>2480759632</td><td>MUHAMAD ALKA BAHTIAR</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>10</td><td>BCA</td><td>7642477814</td><td>HAMAD ALIFABYAN RAMADHANI</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>11</td><td>BCA</td><td>5885292647</td><td>MUHAMMAD RAFFI</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>12</td><td>BCA</td><td>7642480149</td><td>AHMAD FAUZAN AL GHIFARI</td><td>-</td><td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
         </tbody>
     </table>
+
+    <script>
+        function ubahStatus(selectElement) {
+            if (selectElement.value === 'off') {
+                selectElement.className = 'status-select status-off';
+            } else {
+                selectElement.className = 'status-select status-aktif';
+            }
+        }
+    </script>
 
 </body>
 </html>
