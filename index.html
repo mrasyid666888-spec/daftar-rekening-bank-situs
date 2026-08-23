@@ -20,7 +20,7 @@
         .header-container-bca h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
         .header-container-bca h3 { margin: 8px 0 0 0; font-size: 18px; color: #ffeb3b; text-transform: uppercase; }
         
-        /* Bar Judul Standar (Oranye untuk BNI, Danamon, Maybank) */
+        /* Bar Judul Standar (Oranye untuk BNI, Maybank, dll) */
         .section-title {
             background: linear-gradient(135deg, #e65100, #f57c00);
             color: white;
@@ -50,6 +50,21 @@
             letter-spacing: 1px;
         }
 
+        /* KHUSUS BAR JUDUL DEPO DANAMON (Kuning Tua) */
+        .section-title-danamon {
+            background: linear-gradient(135deg, #b8860b, #d4af37);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 35px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
         table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         
@@ -61,6 +76,9 @@
 
         /* KHUSUS HEADER TABEL DEPO BRI (Biru Tua) */
         .table-bri th { background-color: #002244; color: white; }
+
+        /* KHUSUS HEADER TABEL DEPO DANAMON (Kuning Tua) */
+        .table-danamon th { background-color: #b8860b; color: white; }
 
         tr:nth-child(even) { background-color: #f9f9f9; }
         tr:hover { background-color: #f1f1f1; }
@@ -160,9 +178,9 @@
         </tbody>
     </table>
 
-    <!-- BAR DANAMON (ORANYE) -->
-    <div class="section-title">DEPO DANAMON</div>
-    <table>
+    <!-- BAR DEPO DANAMON (KUNING TUA) -->
+    <div class="section-title-danamon">DEPO DANAMON</div>
+    <table class="table-danamon">
         <thead>
             <tr>
                 <th>No</th>
