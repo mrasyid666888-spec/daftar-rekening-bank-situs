@@ -6,9 +6,18 @@
     <title>Daftar Rekening Bank</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
-        h2 { color: #333; text-align: center; margin-bottom: 5px; }
-        h3 { color: #555; text-align: center; margin-top: 0; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header-container {
+            background: linear-gradient(135deg, #003366, #0056b3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .header-container h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
+        .header-container h3 { margin: 8px 0 0 0; font-size: 18px; color: #ffeb3b; text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background-color: #0056b3; color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
@@ -18,8 +27,10 @@
 </head>
 <body>
 
-    <h2>Daftar Rekening Bank</h2>
-    <h3>BANK DEPO BCA</h3>
+    <div class="header-container">
+        <h2>Daftar Rekening Bank</h2>
+        <h3>BANK DEPO BCA</h3>
+    </div>
 
     <table>
         <thead>
@@ -42,7 +53,7 @@
             <tr><td>7</td><td>BCA</td><td>5311465351</td><td>Isman Nurohim</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
             <tr><td>8</td><td>BCA</td><td>5215295041</td><td>SAPNAH</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
             <tr><td>9</td><td>BCA</td><td>2480759632</td><td>MUHAMAD ALKA BAHTIAR</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
-            <tr><td>10</td><td>BCA</td><td>7642477814</td><td>MUHAMAD ALIFABYAN RAMADHANI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
+            <tr><td>10</td><td>BCA</td><td>7642477814</td><td>HAMAD ALIFABYAN RAMADHANI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
             <tr><td>11</td><td>BCA</td><td>5885292647</td><td>MUHAMMAD RAFFI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
             <tr><td>12</td><td>BCA</td><td>7642480149</td><td>AHMAD FAUZAN AL GHIFARI</td><td>-</td><td><span class="badge-aktif">Aktif</span></td></tr>
         </tbody>
