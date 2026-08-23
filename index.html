@@ -103,6 +103,33 @@
         </tbody>
     </table>
 
+    <div class="section-title">DEPO BRI</div>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Jenis Bank</th>
+                <th>Nomor Rekening</th>
+                <th>Nama Pemilik Rekening</th>
+                <th>Area / Kode</th>
+                <th>Aktif / Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>BRI</td><td>142101000082560</td><td>DUDUNG</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>2</td><td>BRI</td><td>731101003548508</td><td>Yayat</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>3</td><td>BRI</td><td>385401006146505</td><td>Burhanudin</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>4</td><td>BRI</td><td>037901057224505</td><td>SUMARNI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>5</td><td>BRI</td><td>063501047733502</td><td>DEVI SUDARYATI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>6</td><td>BRI</td><td>082701048659508</td><td>SAPNAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>7</td><td>BRI</td><td>112901039362503</td><td>ALDI KURNIAWAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>8</td><td>BRI</td><td>668201002226503</td><td>FAUZAN AULIA RAHMAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>9</td><td>BRI</td><td>113901018204505</td><td>RENDI RUSTANDI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>10</td><td>BRI</td><td>112901039635508</td><td>DEVI SUSANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+            <tr><td>11</td><td>BRI</td><td>112901039633506</td><td>HADI PERMADI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+        </tbody>
+    </table>
+
     <script>
         function ubahStatus(selectElement) {
             if (selectElement.value === 'off') {
