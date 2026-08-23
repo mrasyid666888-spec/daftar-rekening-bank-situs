@@ -7,9 +7,9 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
         
-        /* Bar Judul Utama BCA (Tetap Oranye) */
-        .header-container {
-            background: linear-gradient(135deg, #e65100, #f57c00);
+        /* KHUSUS BAR JUDUL UTAMA BCA (Biru Muda) */
+        .header-container-bca {
+            background: linear-gradient(135deg, #007bff, #339af0);
             color: white;
             text-align: center;
             padding: 20px;
@@ -17,10 +17,10 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
-        .header-container h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
-        .header-container h3 { margin: 8px 0 0 0; font-size: 18px; color: #fff; text-transform: uppercase; }
+        .header-container-bca h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
+        .header-container-bca h3 { margin: 8px 0 0 0; font-size: 18px; color: #ffeb3b; text-transform: uppercase; }
         
-        /* Bar Judul Standar (Oranye untuk BNI, Danamon, Maybank, dll) */
+        /* Bar Judul Standar (Oranye untuk BNI, Danamon, Maybank) */
         .section-title {
             background: linear-gradient(135deg, #e65100, #f57c00);
             color: white;
@@ -56,6 +56,9 @@
         /* Header Tabel Standar (Oranye) */
         th { background-color: #f57c00; color: white; }
 
+        /* KHUSUS HEADER TABEL BCA (Biru Muda) */
+        .table-bca th { background-color: #007bff; color: white; }
+
         /* KHUSUS HEADER TABEL DEPO BRI (Biru Tua) */
         .table-bri th { background-color: #002244; color: white; }
 
@@ -75,13 +78,13 @@
 </head>
 <body>
 
-    <!-- BAR BCA (ORANYE) -->
-    <div class="header-container">
+    <!-- BAR BCA (BIRU MUDA) -->
+    <div class="header-container-bca">
         <h2>Daftar Rekening Bank</h2>
         <h3>BANK DEPO BCA</h3>
     </div>
 
-    <table>
+    <table class="table-bca">
         <thead>
             <tr>
                 <th>No</th>
@@ -129,7 +132,7 @@
         </tbody>
     </table>
 
-    <!-- KHUSUS DEPO BRI (BAR JUDUL & TABEL DIUBAH JADI BIRU TUA) -->
+    <!-- BAR DEPO BRI (BIRU TUA) -->
     <div class="section-title-bri">DEPO BRI</div>
     <table class="table-bri">
         <thead>
