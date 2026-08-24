@@ -55,6 +55,19 @@
         }
         .header-container-bca h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
         .header-container-bca h3 { margin: 8px 0 0 0; font-size: 18px; color: #ffeb3b; text-transform: uppercase; }
+
+        /* KHUSUS BAR JUDUL WITHDRAW (Hijau) */
+        .header-container-wd {
+            background: linear-gradient(135deg, #2b8a3e, #40c057);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .header-container-wd h2 { margin: 0; font-size: 22px; letter-spacing: 1px; }
+        .header-container-wd h3 { margin: 8px 0 0 0; font-size: 18px; color: #ffeb3b; text-transform: uppercase; }
         
         /* Bar Judul Standar (Oranye untuk BNI, Maybank, dll) */
         .section-title {
@@ -115,6 +128,9 @@
 
         /* KHUSUS HEADER TABEL DEPO DANAMON (Kuning Tua) */
         .table-danamon th { background-color: #b8860b; color: white; }
+
+        /* KHUSUS HEADER TABEL WITHDRAW (Hijau) */
+        .table-wd th { background-color: #2b8a3e; color: white; }
 
         tr:nth-child(even) { background-color: #f9f9f9; }
         tr:hover { background-color: #f1f1f1; }
@@ -261,15 +277,14 @@
 
     <!-- ================= HALAMAN 2: REKENING WITHDRAW ================= -->
     <div id="wdTab" class="tab-content">
-        <div class="header-container-bca" style="background: linear-gradient(135deg, #2b8a3e, #40c057);">
+        <div class="header-container-wd">
             <h2>Daftar Rekening Bank</h2>
-            <h3>BANK WITHDRAW / WD</h3>
+            <h3>BANK WITHDRAW (WD) - BCA</h3>
         </div>
 
-        <!-- Contoh Tabel Withdraw (Bisa disesuaikan isinya) -->
-        <table>
+        <table class="table-wd">
             <thead>
-                <tr style="background-color: #2b8a3e; color: white;">
+                <tr>
                     <th>No</th>
                     <th>Jenis Bank</th>
                     <th>Nomor Rekening</th>
@@ -279,7 +294,46 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1</td><td>BCA (WD)</td><td>1234567890</td><td>CONTOH PEMILIK WD</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>1</td><td>BCA</td><td>4871017756</td><td>RAMADHAN LISTYA NUGRAHA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>2</td><td>BCA</td><td>1652792973</td><td>SIDIK MAULANA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>3</td><td>BCA</td><td>5875768911</td><td>MUHAMAD KHAIRUL ROHMAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>4</td><td>BCA</td><td>5860560269</td><td>JULIANA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>5</td><td>BCA</td><td>2320743713</td><td>AHMAD DENI AKBAR</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>6</td><td>BCA</td><td>5875790711</td><td>SINTON NAIBAHO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>7</td><td>BCA</td><td>5875791319</td><td>Syafitri Ameliana</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>8</td><td>BCA</td><td>2620247025</td><td>SUHENDAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>9</td><td>BCA</td><td>3100489758</td><td>WENDI HARDIANSYAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>10</td><td>BCA</td><td>2453696651</td><td>Muhamad Guntur Ramadan</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>11</td><td>BCA</td><td>4080305058</td><td>VIKI ARDAVAL</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>12</td><td>BCA</td><td>5800657948</td><td>TITIN ARISTA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>13</td><td>BCA</td><td>7726000157</td><td>MUSLIHAN EFENDI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>14</td><td>BCA</td><td>0690671492</td><td>Handani</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>15</td><td>BCA</td><td>5860574642</td><td>AGUS YUDO BIANTORO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>16</td><td>BCA</td><td>7015939613</td><td>YULIANTO TRI WIBOWO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>17</td><td>BCA</td><td>5875803881</td><td>MUHAMMAD FATURRAHMAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>18</td><td>BCA</td><td>5860574138</td><td>KEYLA SAPNA ARINI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>19</td><td>BCA</td><td>2453710017</td><td>RIVA INDRIYANI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>20</td><td>BCA</td><td>1751293696</td><td>MURNI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>21</td><td>BCA</td><td>1350961875</td><td>HANDRI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>22</td><td>BCA</td><td>6115989581</td><td>LL. RIO PURNAMA PUTRA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>23</td><td>BCA</td><td>7726010110</td><td>MUHAMMAD ROSYAEDI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>24</td><td>BCA</td><td>1350963754</td><td>JUPRIYANTO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>25</td><td>BCA</td><td>4160836101</td><td>MOH. SOFYAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>26</td><td>BCA</td><td>4660413311</td><td>Alfiandy Octa Vernando. H</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>27</td><td>BCA</td><td>1790407136</td><td>SARTONO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>28</td><td>BCA</td><td>6430344224</td><td>FAZA RAFLIANSYAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>29</td><td>BCA</td><td>6430344208</td><td>WAWAN HERMAWAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>30</td><td>BCA</td><td>0031453525</td><td>LUVTI SUFIAN</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>31</td><td>BCA</td><td>1343291187</td><td>SITI MUSHOFFA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>32</td><td>BCA</td><td>1663650975</td><td>INA KUSNIA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>33</td><td>BCA</td><td>5810718791</td><td>WASNO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>34</td><td>BCA</td><td>7015955635</td><td>NURHAYATFI ARDILLAH</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>35</td><td>BCA</td><td>0942252445</td><td>MUHAMMAD ARIFIANTO</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>36</td><td>BCA</td><td>7573045612</td><td>IRVAN MAULANA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>37</td><td>BCA</td><td>6970376401</td><td>NATALIA YUKIANTI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>38</td><td>BCA</td><td>1060221401</td><td>RETNO SARI</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>39</td><td>BCA</td><td>1940552091</td><td>LIANA KOMARIA</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
+                <tr><td>40</td><td>BCA</td><td>6955316341</td><td>PUTRI ARISTA BR DAMANIK</td><td>-</td><td><select class="status-select status-aktif" onchange="ubahStatus(this)"><option value="aktif" class="status-aktif" selected>Aktif</option><option value="off" class="status-off">REK DI OFFKAN</option></select></td></tr>
             </tbody>
         </table>
     </div>
