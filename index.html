@@ -153,7 +153,24 @@
         <button class="nav-tab active" onclick="switchTab('depoTab', this)">Data Rekening Depo</button>
         <button class="nav-tab" onclick="switchTab('wdTab', this)">Data Rekening Withdraw</button>
     </div>
+<!-- Form Utama Tambah Rekening Universal -->
+<div class="form-tambah-container" style="background: #1e293b; padding: 20px; border-radius: 8px; margin-bottom: 25px; color: white; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+    <h3 style="width: 100%; margin: 0 0 10px 0; font-size: 16px; color: #38bdf8;">➕ Tambah Rekening Baru</h3>
+    
+    <select id="targetTabel" style="padding: 8px; border-radius: 4px; background: #0f172a; color: white; border: 1px solid #475569;">
+        <option value="">-- Pilih Tabel Tujuan --</option>
+        <option value="depo-bca">Depo BCA</option>
+        <option value="depo-bni">Depo BNI</option>
+        <option value="depo-bri">Depo BRI</option>
+        <option value="depo-mandiri">Depo Mandiri</option>
+    </select>
 
+    <input type="text" placeholder="Jenis (Cth: BCA / QRIS)" style="padding: 8px; border-radius: 4px; background: #0f172a; color: white; border: 1px solid #475569; flex: 1;">
+    <input type="text" placeholder="Nomor Rekening" style="padding: 8px; border-radius: 4px; background: #0f172a; color: white; border: 1px solid #475569; flex: 1;">
+    <input type="text" placeholder="Nama Pemilik" style="padding: 8px; border-radius: 4px; background: #0f172a; color: white; border: 1px solid #475569; flex: 1;">
+    
+    <button type="button" onclick="tambahRekeningUniversal(this)" style="padding: 8px 16px; background: #22c55e; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Tambah</button>
+</div>
     <!-- ================= HALAMAN 1: REKENING DEPO ================= -->
     <div id="depoTab" class="tab-content active">
         <!-- BAR BCA (BIRU MUDA) -->
@@ -660,20 +677,19 @@
     </div>
 
     <script>
+        <script>
         // Fungsi untuk pindah halaman tab
         function switchTab(tabId, buttonElement) {
-            // Sembunyikan semua konten tab
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
-            // Non-aktifkan semua tombol menu
             const buttons = document.querySelectorAll('.nav-tab');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Tampilkan tab yang dipilih dan aktifkan tombolnya
             document.getElementById(tabId).classList.add('active');
             buttonElement.classList.add('active');
         }
+
         // Fungsi untuk ubah status select warna hijau/merah
         function ubahStatus(selectElement) {
             if (selectElement.value === 'off') {
@@ -682,75 +698,62 @@
                 selectElement.className = 'status-select status-aktif';
             }
         }
-   
-    function tambahRekeningKeTabel(buttonElement) {
-        // Ambil form container tempat tombol berada
-        const container = buttonElement.closest('.form-tambah-container');
-        const inputs = container.querySelectorAll('input');
-        const jenis = inputs[0].value.trim();
-        const noRek = inputs[1].value.trim();
-        const nama = inputs[2].value.trim();
 
-        if (!jenis || !noRek || !nama) {
-            alert('Isi dulu datanya dengan lengkap pren!');
-            return;
-        }
+        // Fungsi Universal untuk menambah rekening ke tabel pilihan
+        function tambahRekeningUniversal(buttonElement) {
+            const container = buttonElement.closest('.form-tambah-container');
+            const targetSelect = container.querySelector('#targetTabel');
+            const inputs = container.querySelectorAll('input');
+            
+            const pilihanTabel = targetSelect.value;
+            const jenis = inputs[0].value.trim();
+            const noRek = inputs[1].value.trim();
+            const nama = inputs[2].value.trim();
 
-        // Cari tabel (<tbody>) terdekat yang posisinya berada di atas form ini
-        let targetTableBody = null;
-        let parentBox = container.parentElement;
-        
-        // Cari elemen table mundur ke atas dari posisi form
-        let current = container;
-        while (current) {
-            if (current.previousElementSibling) {
-                current = current.previousElementSibling;
-                if (current.tagName === 'TABLE') {
-                    targetTableBody = current.querySelector('tbody');
-                    break;
-                }
-                const foundTable = current.querySelector('table');
-                if (foundTable) {
-                    targetTableBody = foundTable.querySelector('tbody');
-                    break;
-                }
-            } else {
-                current = current.parentElement;
+            if (!pilihanTabel) {
+                alert('Pilih dulu tabel tujuannya, pren!');
+                return;
             }
-            if (!current || current === document.body) break;
+
+            if (!jenis || !noRek || !nama) {
+                alert('Isi dulu datanya dengan lengkap, pren!');
+                return;
+            }
+
+            let targetTable = document.querySelector(`#${pilihanTabel} table`) || document.querySelector(`.${pilihanTabel}`) || document.getElementById(pilihanTabel);
+
+            if (!targetTable) {
+                alert('Tabel tujuan tidak ditemukan di halaman!');
+                return;
+            }
+
+            const targetTableBody = targetTable.querySelector('tbody') || targetTable;
+            const jumlahBaris = targetTableBody.rows.length + 1;
+            const barisBaru = document.createElement('tr');
+
+            barisBaru.innerHTML = `
+                <td>${jumlahBaris}</td>
+                <td>${jenis}</td>
+                <td>${noRek}</td>
+                <td>${nama}</td>
+                <td>-</td>
+                <td>
+                    <select class="status-select status-aktif" onchange="ubahStatus(this)">
+                        <option value="aktif" class="status-aktif" selected>Aktif</option>
+                        <option value="off" class="status-off">REK DI OFFKAN</option>
+                    </select>
+                </td>
+            `;
+
+            targetTableBody.appendChild(barisBaru);
+
+            inputs[0].value = '';
+            inputs[1].value = '';
+            inputs[2].value = '';
+            targetSelect.value = '';
+
+            alert('Mantap! Rekening berhasil masuk ke tabel.');
         }
-
-        if (!targetTableBody) {
-            alert('Tabel tujuan tidak ditemukan!');
-            return;
-        }
-
-        const jumlahBaris = targetTableBody.rows.length + 1;
-        const barisBaru = document.createElement('tr');
-
-        barisBaru.innerHTML = `
-            <td>${jumlahBaris}</td>
-            <td>${jenis}</td>
-            <td>${noRek}</td>
-            <td>${nama}</td>
-            <td>-</td>
-            <td>
-                <select class="status-select status-aktif" onchange="ubahStatus(this)">
-                    <option value="aktif" class="status-aktif" selected>Aktif</option>
-                    <option value="off" class="status-off">REK DI OFFKAN</option>
-                </select>
-            </td>
-        `;
-
-        targetTableBody.appendChild(barisBaru);
-
-        // Reset input
-        inputs[0].value = '';
-        inputs[1].value = '';
-        inputs[2].value = '';
-
-        alert('Mantap! Rekening berhasil masuk ke tabel.');
-    }
-</script>
+    </script>
 </body>
 </html>
