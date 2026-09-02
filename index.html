@@ -684,6 +684,59 @@
             }
         }
     </script>
+<!-- ⬇️ TARUH KODE DI SINI (DI ATAS </body>) ⬇️ -->
+    <div class="form-tambah-container" style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin: 20px 0;">
+        <h3 style="margin-top: 0; font-size: 14px; color: #333; margin-bottom: 10px;">➕ Tambah Rekening Baru (Otomatis)</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="text" id="inputJenis" placeholder="Jenis Bank (cth: BCA, BRI)" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
+            <input type="text" id="inputNoRek" placeholder="Nomor Rekening" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
+            <input type="text" id="inputNama" placeholder="Nama Pemilik Rekening" style="padding: 8px; flex: 2; min-width: 200px; border: 1px solid #ccc; border-radius: 4px;">
+            <button type="button" onclick="tambahRekeningBaru()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan / Tambah</button>
+        </div>
+    </div>
 
+    <script>
+        function tambahRekeningBaru() {
+            const jenis = document.getElementById('inputJenis').value.trim();
+            const noRek = document.getElementById('inputNoRek').value.trim();
+            const nama = document.getElementById('inputNama').value.trim();
+
+            if (!jenis || !noRek || !nama) {
+                alert('Isi dulu datanya dengan lengkap pren!');
+                return;
+            }
+
+            const tabelTarget = document.querySelector('.table-wd tbody');
+            if (!tabelTarget) {
+                alert('Tabel WD tidak ditemukan!');
+                return;
+            }
+
+            const jumlahBaris = tabelTarget.rows.length + 1;
+            const barisBaru = document.createElement('tr');
+
+            barisBaru.innerHTML = `
+                <td>${jumlahBaris}</td>
+                <td>${jenis}</td>
+                <td>${noRek}</td>
+                <td>${nama}</td>
+                <td>-</td>
+                <td>
+                    <select class="status-select status-aktif" onchange="ubahStatus(this)">
+                        <option value="aktif" class="status-aktif" selected>Aktif</option>
+                        <option value="off" class="status-off">REK DI OFFKAN</option>
+                    </select>
+                </td>
+            `;
+
+            tabelTarget.appendChild(barisBaru);
+
+            document.getElementById('inputJenis').value = '';
+            document.getElementById('inputNoRek').value = '';
+            document.getElementById('inputNama').value = '';
+
+            alert('Rekening berhasil ditambahkan pren!');
+        }
+    </script>
 </body>
 </html>
