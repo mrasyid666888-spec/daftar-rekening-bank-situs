@@ -694,46 +694,13 @@
             <button type="button" onclick="tambahRekeningBaru()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan / Tambah</button>
         </div>
     </div>
-
-    <script>
+<script>
+    // Fungsi Tambah Rekening Otomatis (Fix Target Tabel)
     function tambahRekeningBaru() {
-        // Cari container form tempat tombol ini berada
-        const container = event.target.closest('div').parentElement;
+        // Cari elemen form container terdekat dari tombol yang diklik
+        const container = event.target.closest('.form-tambah-container');
         
-        // Cari tabel yang posisinya tepat berada di atas form ini
-        // (Atau kita cari elemen table terdekat ke atas)
-        let targetTable = null;
-        let currentElement = container.previousElementSibling;
-        
-        while (currentElement) {
-            if (currentElement.tagName === 'TABLE') {
-                targetTable = currentElement.querySelector('tbody');
-                break;
-            }
-            // Kalau bentuknya dibungkus div, cek ke dalam atau mundur ke atas
-            const foundTable = currentElement.querySelector('table');
-            if (foundTable) {
-                targetTable = foundTable.querySelector('tbody');
-                break;
-            }
-            currentElement = currentElement.previousElementSibling;
-        }
-
-        // Kalau pakai cara di atas masih belum ketemu, kita ambil tabel terakhir sebelum form
-        if (!targetTable) {
-            const allTables = document.querySelectorAll('table');
-            if (allTables.length > 0) {
-                targetTable = allTables[allTables.length - 1].querySelector('tbody');
-            }
-        }
-
-        if (!targetTable) {
-            alert('Tabel tujuan tidak ditemukan, pren!');
-            return;
-        }
-
-        // Ambil value dari inputan form
-        // (Pastikan ID inputan kamu sesuai, atau kita ambil berdasarkan urutan input di form tersebut)
+        // Ambil nilai dari input di dalam form tersebut
         const inputs = container.querySelectorAll('input');
         const jenis = inputs[0].value.trim();
         const noRek = inputs[1].value.trim();
@@ -744,7 +711,30 @@
             return;
         }
 
-        const jumlahBaris = targetTable.rows.length + 1;
+        // Cari elemen <table> tepat sebelum container form ini
+        let previousElement = container.previousElementSibling;
+        let targetTableBody = null;
+
+        while (previousElement) {
+            if (previousElement.tagName === 'TABLE') {
+                targetTableBody = previousElement.querySelector('tbody');
+                break;
+            }
+            // Kalau dibungkus div lain, cari tag table di dalamnya
+            const foundTable = previousElement.querySelector('table');
+            if (foundTable) {
+                targetTableBody = foundTable.querySelector('tbody');
+                break;
+            }
+            previousElement = previousElement.previousElementSibling;
+        }
+
+        if (!targetTableBody) {
+            alert('Tabel tujuan di atas form tidak ditemukan!');
+            return;
+        }
+
+        const jumlahBaris = targetTableBody.rows.length + 1;
         const barisBaru = document.createElement('tr');
 
         barisBaru.innerHTML = `
@@ -761,14 +751,14 @@
             </td>
         `;
 
-        targetTable.appendChild(barisBaru);
+        targetTableBody.appendChild(barisBaru);
 
-        // Reset input form
+        // Kosongkan form kembali setelah berhasil
         inputs[0].value = '';
         inputs[1].value = '';
         inputs[2].value = '';
 
-        alert('Rekening berhasil ditambahkan ke tabel pren!');
+        alert('Rekening berhasil ditambahkan ke tabel!');
     }
 </script>
 </body>
