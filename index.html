@@ -699,61 +699,89 @@
             }
         }
 
-        // Fungsi Universal untuk menambah rekening ke tabel pilihan
         function tambahRekeningUniversal(buttonElement) {
-            const container = buttonElement.closest('.form-tambah-container');
-            const targetSelect = container.querySelector('#targetTabel');
-            const inputs = container.querySelectorAll('input');
-            
-            const pilihanTabel = targetSelect.value;
-            const jenis = inputs[0].value.trim();
-            const noRek = inputs[1].value.trim();
-            const nama = inputs[2].value.trim();
+    const container = buttonElement.closest('.form-tambah-container');
+    const targetSelect = container.querySelector('#targetTabel');
+    const inputs = container.querySelectorAll('input');
+    
+    const pilihanTabel = targetSelect.value;
+    const jenis = inputs[0].value.trim();
+    const noRek = inputs[1].value.trim();
+    const nama = inputs[2].value.trim();
 
-            if (!pilihanTabel) {
-                alert('Pilih dulu tabel tujuannya, pren!');
-                return;
+    if (!pilihanTabel) {
+        alert('Pilih dulu tabel tujuannya, pren!');
+        return;
+    }
+
+    if (!jenis || !noRek || !nama) {
+        alert('Isi dulu datanya dengan lengkap, pren!');
+        return;
+    }
+
+    // Cari tabel berdasarkan class-nya (misal: table-bca) atau cari semua tabel lalu sesuaikan
+    let targetTableBody = null;
+    
+    // Coba cari langsung berdasarkan class tabel bawaan (misal: .table-bca)
+    const matchedTable = document.querySelector(`.table-${pilihanTabel.replace('depo-', '')}`) || document.querySelector(`.${pilihanTabel}`);
+    
+    if (matchedTable) {
+        targetTableBody = matchedTable.querySelector('tbody') || matchedTable;
+    } else {
+        // Fallback: Cari lewat teks judul di dalam halaman
+        const allHeaders = document.querySelectorAll('h3, h2');
+        for (let header of allHeaders) {
+            if (header.textContent.toLowerCase().includes(pilihanTabel.replace('depo-', '').toLowerCase())) {
+                let parentBox = header.closest('div');
+                let foundTbl = parentBox ? parentBox.querySelector('table') : null;
+                if (foundTbl) {
+                    targetTableBody = foundTbl.querySelector('tbody');
+                    break;
+                }
             }
-
-            if (!jenis || !noRek || !nama) {
-                alert('Isi dulu datanya dengan lengkap, pren!');
-                return;
-            }
-
-            let targetTable = document.querySelector(`#${pilihanTabel} table`) || document.querySelector(`.${pilihanTabel}`) || document.getElementById(pilihanTabel);
-
-            if (!targetTable) {
-                alert('Tabel tujuan tidak ditemukan di halaman!');
-                return;
-            }
-
-            const targetTableBody = targetTable.querySelector('tbody') || targetTable;
-            const jumlahBaris = targetTableBody.rows.length + 1;
-            const barisBaru = document.createElement('tr');
-
-            barisBaru.innerHTML = `
-                <td>${jumlahBaris}</td>
-                <td>${jenis}</td>
-                <td>${noRek}</td>
-                <td>${nama}</td>
-                <td>-</td>
-                <td>
-                    <select class="status-select status-aktif" onchange="ubahStatus(this)">
-                        <option value="aktif" class="status-aktif" selected>Aktif</option>
-                        <option value="off" class="status-off">REK DI OFFKAN</option>
-                    </select>
-                </td>
-            `;
-
-            targetTableBody.appendChild(barisBaru);
-
-            inputs[0].value = '';
-            inputs[1].value = '';
-            inputs[2].value = '';
-            targetSelect.value = '';
-
-            alert('Mantap! Rekening berhasil masuk ke tabel.');
         }
+    }
+
+    if (!targetTableBody) {
+        // Pilihan terakhir: Ambil tabel pertama yang aktif di halaman jika spesifiknya belum ketemu
+        const activeTabContent = document.querySelector('.tab-content.active');
+        const defaultTable = activeTabContent ? activeTabContent.querySelector('table') : document.querySelector('table');
+        if (defaultTable) {
+            targetTableBody = defaultTable.querySelector('tbody');
+        }
+    }
+
+    if (!targetTableBody) {
+        alert('Tabel tujuan tidak ditemukan di halaman!');
+        return;
+    }
+
+    const jumlahBaris = targetTableBody.rows.length + 1;
+    const barisBaru = document.createElement('tr');
+
+    barisBaru.innerHTML = `
+        <td>${jumlahBaris}</td>
+        <td>${jenis}</td>
+        <td>${noRek}</td>
+        <td>${nama}</td>
+        <td>-</td>
+        <td>
+            <select class="status-select status-aktif" onchange="ubahStatus(this)">
+                <option value="aktif" class="status-aktif" selected>Aktif</option>
+                <option value="off" class="status-off">REK DI OFFKAN</option>
+            </select>
+        </td>
+    `;
+
+    targetTableBody.appendChild(barisBaru);
+
+    inputs[0].value = '';
+    inputs[1].value = '';
+    inputs[2].value = '';
+    targetSelect.value = '';
+
+    alert('Mantap! Rekening berhasil masuk ke tabel.');
+}
     </script>
 </body>
 </html>
