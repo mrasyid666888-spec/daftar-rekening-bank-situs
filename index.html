@@ -684,19 +684,8 @@
             }
         }
    <script>
-    <!-- FORM TAMBAH REKENING OTOMATIS -->
-<div class="form-tambah-container" style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin: 20px 0;">
-    <h3 style="margin-top: 0; font-size: 14px; color: #333; margin-bottom: 10px;">➕ Tambah Rekening Baru (Otomatis)</h3>
-    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <input type="text" placeholder="Jenis Bank (cth: BCA, BRI)" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
-        <input type="text" placeholder="Nomor Rekening" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
-        <input type="text" placeholder="Nama Pemilik Rekening" style="padding: 8px; flex: 2; min-width: 200px; border: 1px solid #ccc; border-radius: 4px;">
-        <button type="button" onclick="tambahRekeningKeTabel(this)" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan / Tambah</button>
-    </div>
-</div>
-
-<script>
     function tambahRekeningKeTabel(buttonElement) {
+        // Ambil form container tempat tombol berada
         const container = buttonElement.closest('.form-tambah-container');
         const inputs = container.querySelectorAll('input');
         const jenis = inputs[0].value.trim();
@@ -708,28 +697,36 @@
             return;
         }
 
-        let targetTable = null;
-        let sibling = container.previousElementSibling;
+        // Cari tabel (<tbody>) terdekat yang posisinya berada di atas form ini
+        let targetTableBody = null;
+        let parentBox = container.parentElement;
         
-        while (sibling) {
-            if (sibling.tagName === 'TABLE') {
-                targetTable = sibling.querySelector('tbody');
-                break;
+        // Cari elemen table mundur ke atas dari posisi form
+        let current = container;
+        while (current) {
+            if (current.previousElementSibling) {
+                current = current.previousElementSibling;
+                if (current.tagName === 'TABLE') {
+                    targetTableBody = current.querySelector('tbody');
+                    break;
+                }
+                const foundTable = current.querySelector('table');
+                if (foundTable) {
+                    targetTableBody = foundTable.querySelector('tbody');
+                    break;
+                }
+            } else {
+                current = current.parentElement;
             }
-            const found = sibling.querySelector('table');
-            if (found) {
-                targetTable = found.querySelector('tbody');
-                break;
-            }
-            sibling = sibling.previousElementSibling;
+            if (!current || current === document.body) break;
         }
 
-        if (!targetTable) {
-            alert('Tabel di atas form tidak ditemukan!');
+        if (!targetTableBody) {
+            alert('Tabel tujuan tidak ditemukan!');
             return;
         }
 
-        const jumlahBaris = targetTable.rows.length + 1;
+        const jumlahBaris = targetTableBody.rows.length + 1;
         const barisBaru = document.createElement('tr');
 
         barisBaru.innerHTML = `
@@ -746,8 +743,9 @@
             </td>
         `;
 
-        targetTable.appendChild(barisBaru);
+        targetTableBody.appendChild(barisBaru);
 
+        // Reset input
         inputs[0].value = '';
         inputs[1].value = '';
         inputs[2].value = '';
