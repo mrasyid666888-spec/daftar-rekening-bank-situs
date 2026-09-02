@@ -683,24 +683,21 @@
                 selectElement.className = 'status-select status-aktif';
             }
         }
-    </script>
-<!-- ⬇️ TARUH KODE DI SINI (DI ATAS </body>) ⬇️ -->
-    <div class="form-tambah-container" style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin: 20px 0;">
-        <h3 style="margin-top: 0; font-size: 14px; color: #333; margin-bottom: 10px;">➕ Tambah Rekening Baru (Otomatis)</h3>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <input type="text" id="inputJenis" placeholder="Jenis Bank (cth: BCA, BRI)" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
-            <input type="text" id="inputNoRek" placeholder="Nomor Rekening" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
-            <input type="text" id="inputNama" placeholder="Nama Pemilik Rekening" style="padding: 8px; flex: 2; min-width: 200px; border: 1px solid #ccc; border-radius: 4px;">
-            <button type="button" onclick="tambahRekeningBaru()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan / Tambah</button>
-        </div>
+   <script>
+    <!-- FORM TAMBAH REKENING OTOMATIS -->
+<div class="form-tambah-container" style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin: 20px 0;">
+    <h3 style="margin-top: 0; font-size: 14px; color: #333; margin-bottom: 10px;">➕ Tambah Rekening Baru (Otomatis)</h3>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" placeholder="Jenis Bank (cth: BCA, BRI)" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="text" placeholder="Nomor Rekening" style="padding: 8px; flex: 1; min-width: 150px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="text" placeholder="Nama Pemilik Rekening" style="padding: 8px; flex: 2; min-width: 200px; border: 1px solid #ccc; border-radius: 4px;">
+        <button type="button" onclick="tambahRekeningKeTabel(this)" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">Simpan / Tambah</button>
     </div>
+</div>
+
 <script>
-    // Fungsi Tambah Rekening Otomatis (Fix Target Tabel)
-    function tambahRekeningBaru() {
-        // Cari elemen form container terdekat dari tombol yang diklik
-        const container = event.target.closest('.form-tambah-container');
-        
-        // Ambil nilai dari input di dalam form tersebut
+    function tambahRekeningKeTabel(buttonElement) {
+        const container = buttonElement.closest('.form-tambah-container');
         const inputs = container.querySelectorAll('input');
         const jenis = inputs[0].value.trim();
         const noRek = inputs[1].value.trim();
@@ -711,30 +708,28 @@
             return;
         }
 
-        // Cari elemen <table> tepat sebelum container form ini
-        let previousElement = container.previousElementSibling;
-        let targetTableBody = null;
-
-        while (previousElement) {
-            if (previousElement.tagName === 'TABLE') {
-                targetTableBody = previousElement.querySelector('tbody');
+        let targetTable = null;
+        let sibling = container.previousElementSibling;
+        
+        while (sibling) {
+            if (sibling.tagName === 'TABLE') {
+                targetTable = sibling.querySelector('tbody');
                 break;
             }
-            // Kalau dibungkus div lain, cari tag table di dalamnya
-            const foundTable = previousElement.querySelector('table');
-            if (foundTable) {
-                targetTableBody = foundTable.querySelector('tbody');
+            const found = sibling.querySelector('table');
+            if (found) {
+                targetTable = found.querySelector('tbody');
                 break;
             }
-            previousElement = previousElement.previousElementSibling;
+            sibling = sibling.previousElementSibling;
         }
 
-        if (!targetTableBody) {
-            alert('Tabel tujuan di atas form tidak ditemukan!');
+        if (!targetTable) {
+            alert('Tabel di atas form tidak ditemukan!');
             return;
         }
 
-        const jumlahBaris = targetTableBody.rows.length + 1;
+        const jumlahBaris = targetTable.rows.length + 1;
         const barisBaru = document.createElement('tr');
 
         barisBaru.innerHTML = `
@@ -751,14 +746,13 @@
             </td>
         `;
 
-        targetTableBody.appendChild(barisBaru);
+        targetTable.appendChild(barisBaru);
 
-        // Kosongkan form kembali setelah berhasil
         inputs[0].value = '';
         inputs[1].value = '';
         inputs[2].value = '';
 
-        alert('Rekening berhasil ditambahkan ke tabel!');
+        alert('Mantap! Rekening berhasil masuk ke tabel.');
     }
 </script>
 </body>
