@@ -758,18 +758,21 @@
     const barisBaru = document.createElement('tr');
 
     barisBaru.innerHTML = `
-        <td>${jumlahBaris}</td>
-        <td>${jenis}</td>
-        <td>${noRek}</td>
-        <td>${nama}</td>
-        <td>-</td>
-        <td>
-            <select class="status-select status-aktif" onchange="ubahStatus(this)">
-                <option value="aktif" class="status-aktif" selected>Aktif</option>
-                <option value="off" class="status-off">REK DI OFFKAN</option>
-            </select>
-        </td>
-    `;
+                <td>${jumlahBaris}</td>
+                <td>${jenis}</td>
+                <td>${noRek}</td>
+                <td>${nama}</td>
+                <td>-</td>
+                <td>
+                    <select class="status-select status-aktif" onchange="ubahStatus(this)">
+                        <option value="aktif" class="status-aktif" selected>Aktif</option>
+                        <option value="off" class="status-off">REK DI OFFKAN</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" onclick="hapusKeLog(this)" style="padding: 4px 8px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Hapus</button>
+                </td>
+            `;
 
     targetTableBody.appendChild(barisBaru);
 
@@ -780,6 +783,54 @@
 
     alert('Mantap! Rekening berhasil masuk ke tabel.');
 }
+            // Fungsi untuk menghapus baris dan mencatatnya ke Tabel Log Riwayat
+        function hapusKeLog(buttonElement) {
+            const row = buttonElement.closest('tr');
+            
+            const cells = row.querySelectorAll('td');
+            const jenisBank = cells[1] ? cells[1].innerText : '-';
+            const noRekening = cells[2] ? cells[2].innerText : '-';
+            const namaPemilik = cells[3] ? cells[3].innerText : '-';
+            
+            const waktuHapus = new Date().toLocaleString('id-ID', { 
+                dateStyle: 'medium', 
+                timeStyle: 'medium' 
+            });
+
+            let logTableBody = document.getElementById('logTableBody');
+            if (!logTableBody) {
+                const logContainer = document.createElement('div');
+                logContainer.style.cssText = "margin-top: 40px; padding: 20px; background: #1e293b; border-radius: 8px; color: white;";
+                logContainer.innerHTML = `
+                    <h3 style="margin-top: 0; color: #f87171; font-size: 16px;">📋 Log Riwayat Penghapusan Rekening</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;" border="1">
+                        <thead>
+                            <tr style="background: #0f172a; color: #38bdf8;">
+                                <th style="padding: 8px;">Waktu Hapus</th>
+                                <th style="padding: 8px;">Jenis Bank</th>
+                                <th style="padding: 8px;">No Rekening</th>
+                                <th style="padding: 8px;">Nama Pemilik</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logTableBody"></tbody>
+                    </table>
+                `;
+                document.body.appendChild(logContainer);
+                logTableBody = document.getElementById('logTableBody');
+            }
+
+            const logRow = document.createElement('tr');
+            logRow.innerHTML = `
+                <td style="padding: 8px; border: 1px solid #475569;">${waktuHapus}</td>
+                <td style="padding: 8px; border: 1px solid #475569;">${jenisBank}</td>
+                <td style="padding: 8px; border: 1px solid #475569;">${noRekening}</td>
+                <td style="padding: 8px; border: 1px solid #475569;">${namaPemilik}</td>
+            `;
+            logTableBody.appendChild(logRow);
+
+            row.remove();
+            alert('Rekening berhasil dihapus dan tercatat di Log Riwayat.');
+        }
     </script>
 </body>
 </html>
